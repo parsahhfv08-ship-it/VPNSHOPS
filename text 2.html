@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Absi VPN — خرید اکانت</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33/Vazirmatn-font-face.css">
+<style>
+:root{
+  --bg:#0f0f1a;
+  --card:#0b1020;
+  --muted:rgba(255,255,255,0.6);
+  --accent1:#7c4dff;
+  --accent2:#00d4ff;
+  --accent3:#ff5ca8;
+  --radius:14px;
+  --neon:0 8px 30px rgba(124,77,255,0.18);
+}
+html[lang="fa"]{font-family:Vazirmatn,sans-serif;}
+html[lang="en"]{font-family:"Poppins",sans-serif;}
+body{margin:0;background:var(--bg);color:#eef2ff;min-height:100vh;padding-bottom:60px;display:flex;flex-direction:column;}
+.wrap{max-width:1100px;margin:24px auto;padding:18px;display:flex;flex-direction:column;gap:16px;}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);background:linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));box-shadow:var(--neon);}
+.logo{display:flex;gap:12px;align-items:center;}
+.logo svg{width:48px;height:48px;filter:drop-shadow(0 6px 18px rgba(124,77,255,0.18));}
+.brand{font-weight:700;font-size:18px;}
+.tag{font-size:12px;color:var(--muted);margin-top:2px;}
+.actions{display:flex;gap:10px;align-items:center;}
+.lang-toggle{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);cursor:pointer;font-weight:600;}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px;border-radius:var(--radius);background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03); box-shadow:0 8px 30px rgba(0,0,0,0.5);}
+.hero-left{max-width:68%;}
+.hero h1{margin:0;font-size:22px;}
+.hero p{margin:8px 0 0;color:var(--muted);}
+.cta-group{display:flex;gap:10px;align-items:center;}
+.btn{padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700;transition:transform .18s ease, box-shadow .18s;}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent3));color:#08101a;box-shadow:0 8px 30px rgba(124,77,255,0.18);}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);}
+.page{display:none;animation:floating .36s ease both;}
+.page.show{display:block;}
+@keyframes floating{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px;}
+.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:all .18s;}
+.card:hover{transform:translateY(-6px);box-shadow:var(--neon);}
+.plan{padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;transition:all .18s;}
+.plan:hover{transform:translateY(-6px);box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+.price{font-weight:800;}
+.small{font-size:13px;color:var(--muted);}
+.payment-box{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);}
+.card-number{font-family:monospace;font-size:15px;padding:12px;border-radius:10px;background:rgba(0,0,0,0.18);text-align:center;}
+footer{margin-top:12px;text-align:center;color:var(--muted);font-size:13px;}
+.muted{color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="logo">
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><g><path d="M60 8 L96 28 V62 C96 86 76 106 60 112 C44 106 24 86 24 62 V28 Z" fill="url(#g1)"/><text x="50%" y="70%" text-anchor="middle" fill="#fff" font-size="28" font-weight="700" font-family="Poppins, sans-serif">VP</text></g></svg>
+<div>
+<div class="brand" id="brandText">Absi VPN 💎</div>
+<div class="tag" id="tagText">امن، سریع و مدرن — خرید آنلاین</div>
+</div>
+</div>
+<div class="actions">
+<div class="lang-toggle" id="langToggle">🇮🇷 <span id="langLabel">فارسی</span></div>
+</div>
+</header>
+
+<section class="hero card">
+<div class="hero-left">
+<h1 id="heroTitle">خرید اکانت وی پی ان — خوش آمدید! 😎</h1>
+<p id="heroSubtitle">پلن مورد نظر را انتخاب کنید، پرداخت کنید و با سرعت اتصال خود را بالا ببرید.</p>
+<div style="margin-top:12px;display:flex;gap:8px">
+<button class="btn btn-primary" id="startBtn">شروع خرید ✨</button>
+</div>
+</div>
+</section>
+
+<!-- Pages -->
+<div id="page-home" class="page show">
+<div class="cards">
+<div class="card" data-service="unlimitedTime"><h3>حجم نامحدود | زمان محدود 🛠️</h3><p class="muted">یک ماه یا دو ماه نامحدود</p></div>
+<div class="card" data-service="unlimitedVolume"><h3>زمان نامحدود | حجم محدود ⚡</h3><p class="muted">پلن‌های ۱۰ تا ۲۰۰ گیگابایت</p></div>
+</div>
+</div>
+
+<div id="page-plans" class="page">
+<h2 id="planTitle"></h2>
+<div id="plansContainer"></div>
+<button class="btn btn-ghost" id="backHome">بازگشت</button>
+</div>
+
+<div id="page-payment" class="page">
+<h2>پرداخت</h2>
+<p id="payInstruction">(قیمت محصول) را به شماره کارت زیر واریز نمایید و سپس پرداخت کردم را بزنید</p>
+<div class="card-number">
+====================<br>
+<strong id="cardNumber">5859831823881411</strong><br>
+====================
+</div>
+<button class="btn btn-primary" id="paidBtn">پرداخت کردم ✅</button>
+<button class="btn btn-ghost" id="cancelPayBtn">انصراف</button>
+</div>
+
+<a href="https://t.me/Absi_w" target="_blank" class="btn btn-primary" style="margin-top:12px;text-align:center;">ارتباط با پشتیبانی 💬</a>
+
+<footer>© <span id="year"></span> Absi VPN • طراحی مدرن — سوالی داری؟ روی «ارتباط با پشتیبانی» کلیک کن.</footer>
+</div>
+
+<script>
+// Data
+const plansData = {
+  unlimitedTime: [
+    {name:"یک ماه نامحدود", price:"۸۰,۰۰۰ تومان"},
+    {name:"دو ماه نامحدود", price:"۱۵۰,۰۰۰ تومان"}
+  ],
+  unlimitedVolume: [
+    {name:"10 گیگابایت 1 ماهه", price:"۴۵,۰۰۰ تومان"},
+    {name:"15 گیگابایت 1 ماهه", price:"۶۰,۰۰۰ تومان"},
+    {name:"20 گیگابایت 1 ماهه", price:"۷۵,۰۰۰ تومان"},
+    {name:"30 گیگابایت 2 ماهه", price:"۹۰,۰۰۰ تومان"},
+    {name:"50 گیگابایت 2 ماهه", price:"۱۲۰,۰۰۰ تومان"},
+    {name:"100 گیگابایت 3 ماهه", price:"۱۹۰,۰۰۰ تومان"},
+    {name:"200 گیگابایت 6 ماهه", price:"۳۵۰,۰۰۰ تومان"}
+  ]
+};
+
+// Elements
+const pageHome = document.getElementById('page-home');
+const pagePlans = document.getElementById('page-plans');
+const pagePayment = document.getElementById('page-payment');
+const plansContainer = document.getElementById('plansContainer');
+const backHome = document.getElementById('backHome');
+const startBtn = document.getElementById('startBtn');
+const paidBtn = document.getElementById('paidBtn');
+const cancelPayBtn = document.getElementById('cancelPayBtn');
+const cardNumberEl = document.getElementById('cardNumber');
+const yearEl = document.getElementById('year');
+yearEl.textContent = new Date().getFullYear();
+
+// Show plans
+function showPlans(type){
+  plansContainer.innerHTML = '';
+  document.getElementById('planTitle').textContent = (type==="unlimitedTime") ? "حجم نامحدود | زمان محدود" : "زمان نامحدود | حجم محدود";
+  plansData[type].forEach(plan=>{
+    const div = document.createElement('div');
+    div.className = 'plan';
+    div.innerHTML = `<div>${plan.name}</div><div class="price">${plan.price}</div>`;
+    div.onclick = ()=>showPayment(plan.pricediv.onclick = ()=>showPayment(plan.price);
+    plansContainer.appendChild(div);
+  });
+  showPage('plans');
+}
+
+// Show payment page
+function showPayment(price){
+  document.getElementById('payInstruction').textContent = `لطفا مبلغ ${price} را به شماره کارت زیر واریز کنید و سپس "پرداخت کردم" را بزنید`;
+  showPage('payment');
+}
+
+// Page switcher
+function showPage(page){
+  [pageHome, pagePlans, pagePayment].forEach(p=>p.classList.remove('show'));
+  if(page==='home') pageHome.classList.add('show');
+  if(page==='plans') pagePlans.classList.add('show');
+  if(page==='payment') pagePayment.classList.add('show');
+}
+
+// Event listeners
+startBtn.onclick = ()=>showPage('home');
+backHome.onclick = ()=>showPage('home');
+cancelPayBtn.onclick = ()=>showPage('home');
+paidBtn.onclick = ()=>alert('✅ پرداخت ثبت شد. لطفا کانفیگ خود را از پشتیبانی دریافت کنید.');
+
+// Language toggle (فارسی / انگلیسی)
+const langToggle = document.getElementById('langToggle');
+langToggle.onclick = ()=>{
+  const htmlEl = document.documentElement;
+  if(htmlEl.lang==='fa'){
+    htmlEl.lang='en';
+    document.getElementById('brandText').textContent='Absi VPN 💎';
+    document.getElementById('tagText').textContent='Secure, Fast & Modern — Online Purchase';
+    document.getElementById('heroTitle').textContent='Buy VPN Account — Welcome! 😎';
+    document.getElementById('heroSubtitle').textContent='Choose your plan, pay and boost your connection speed.';
+    document.getElementById('startBtn').textContent='Start Purchase ✨';
+    document.getElementById('langLabel').textContent='English';
+    langToggle.innerHTML = '🇬🇧 <span id="langLabel">English</span>';
+  } else {
+    htmlEl.lang='fa';
+    document.getElementById('brandText').textContent='Absi VPN 💎';
+    document.getElementById('tagText').textContent='امن، سریع و مدرن — خرید آنلاین';
+    document.getElementById('heroTitle').textContent='خرید اکانت وی پی ان — خوش آمدید! 😎';
+    document.getElementById('heroSubtitle').textContent='پلن مورد نظر را انتخاب کنید، پرداخت کنید و با سرعت اتصال خود را بالا ببرید.';
+    document.getElementById('startBtn').textContent='شروع خرید ✨';
+    document.getElementById('langLabel').textContent='فارسی';
+    langToggle.innerHTML = '🇮🇷 <span id="langLabel">فارسی</span>';
+  }
+};
+</script>
+</body>
+</html>
