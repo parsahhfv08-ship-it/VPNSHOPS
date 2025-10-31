@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VPN SHOP 💎 — خرید اکانت وی‌پی‌ان</title>
+
+  <!-- Fonts: Poppins for EN, Vazirmatn for FA -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33/Vazirmatn-font-face.css">
+
+  <style>
+    :root{
+      --bg:#0f0f1a;
+      --card:#0b1020;
+      --muted:rgba(255,255,255,0.6);
+      --glass: rgba(255,255,255,0.04);
+      --accent1: #7c4dff; /* purple */
+      --accent2: #00d4ff; /* cyan */
+      --accent3: #ff5ca8; /* pink */
+      --neon: 0 8px 30px rgba(124,77,255,0.18);
+      --radius:14px;
+    }
+    /* Fonts */
+    html[lang="fa"] { font-family: Vazirmatn, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    html[lang="en"] { font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 400px at 10% 10%, rgba(124,77,255,0.12), transparent 8%),
+        radial-gradient(1000px 300px at 90% 90%, rgba(0,212,255,0.06), transparent 12%),
+        var(--bg);
+      color: #eef2ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      padding-bottom:60px;
+    }
+
+    /* Container */
+    .wrap{max-width:1100px;margin:24px auto;padding:18px;display:flex;flex-direction:column;gap:16px}
+
+    /* Header */
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);
+      box-shadow: var(--neon);
+    }
+    .logo { display:flex;gap:12px;align-items:center;cursor:default }
+    .logo svg{width:48px;height:48px;filter:drop-shadow(0 6px 18px rgba(124,77,255,0.18))}
+    .brand {font-weight:700;font-size:18px;letter-spacing:0.2px}
+    .tag {font-size:12px;color:var(--muted);margin-top:2px}
+
+    /* header actions */
+    .actions{display:flex;gap:10px;align-items:center}
+    .lang-toggle{
+      display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);cursor:pointer;font-weight:600;
+    }
+    .theme-pill{padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));font-weight:700;color:#08101a}
+
+    /* hero */
+    .hero{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px;border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03); box-shadow:0 8px 30px rgba(0,0,0,0.5);
+    }
+    .hero-left{max-width:68%}
+    .hero h1{margin:0;font-size:22px}
+    .hero p{margin:8px 0 0;color:var(--muted)}
+
+    .cta-group{display:flex;gap:10px;align-items:center}
+    .btn{
+      padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700;
+      transition:transform .18s ease, box-shadow .18s;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent1),var(--accent3));
+      color:#08101a;box-shadow:0 8px 30px rgba(124,77,255,0.18);
+    }
+    .btn-ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);
+    }
+
+    /* main content layout */
+    .content{display:grid;grid-template-columns:1fr 360px;gap:16px}
+    @media (max-width:900px){ .content{grid-template-columns:1fr} .hero-left{max-width:100%} }
+
+    /* card list */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .service{
+      padding:14px;border-radius:12px;cursor:pointer;border:1px solid rgba(255,255,255,0.04);
+      transition:transform .18s, box-shadow .18s, background .18s;
+      background: linear-gradient(180deg, rgba(255,255,255,0.007), transparent);
+    }
+    .service:hover{transform:translateY(-6px);box-shadow:var(--neon)}
+    .service h3{margin:0;font-size:16px}
+    .service p{margin:8px 0 0;color:var(--muted);font-size:13px}
+
+    /* sidebar */
+    .sidebar .support{
+      display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;background:linear-gradient(90deg,var(--accent2),var(--accent3));
+      color:#071226;font-weight:700;cursor:pointer;text-decoration:none;justify-content:center;
+    }
+
+    /* pages (SPA) */
+    .page{display:none;animation:floating .36s ease both}
+    .page.show{display:block}
+    @keyframes floating{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+    /* plan tiles */
+    .plan{padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer}
+    .plan:hover{transform:translateY(-6px);box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+    .price{font-weight:800}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* payment box */
+    .payment-box{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .card-number{font-family:monospace;font-size:15px;padding:12px;border-radius:10px;background:rgba(0,0,0,0.18);text-align:center}
+
+    /* footer */
+    footer{margin-top:12px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* tiny helpers */
+    .muted{color:var(--muted)}
+    .emoji{font-size:18px;margin-left:6px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <!-- SVG logo (custom, neon-ish) -->
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#7c4dff"/>
+              <stop offset="1" stop-color="#00d4ff"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <!-- shield -->
+          <g filter="url(#glow)">
+            <path d="M60 8 L96 28 V62 C96 86 76 106 60 112 C44 106 24 86 24 62 V28 Z" fill="url(#g1)"/>
+            <path d="M60 26 L80 38 V62 C80 80 68 94 60 97 C52 94 40 80 40 62 V38 Z" fill="#071226" opacity="0.9"/>
+            <text x="50%" y="70%" text-anchor="middle" fill="#fff" font-size="28" font-weight="700" font-family="Poppins, sans-serif">VP</text>
+          </g>
+        </svg>
+
+        <div>
+          <div class="brand" id="brandText">VPN SHOP 💎</div>
+          <div class="tag" id="tagText">امن، سریع و مدرن — خرید آنلاین</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="theme-pill" title="Theme">Neon</div>
+        <div class="lang-toggle" id="langToggle" role="button" aria-pressed="false">
+          <span id="langEmoji">🇮🇷</span>
+          <span id="langLabel">فارسی</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero card">
+      <div class="hero-left">
+        <h1 id="heroTitle">خرید اکانت وی پی ان — خوش آمدید! 😎</h1>
+        <p id="heroSubtitle">پلن مورد نظر را انتخاب کنید، پرداخت کنید و با سرعت اتصال خود را بالا ببرید.</p>
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn btn-primary" id="startBtn">شروع خرید ✨</button>
+          <button class="btn btn-ghost" id="howBtn">چطور کار می‌کند؟ ❓</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <div style="background:linear-gradient(90deg,var(--accent3),var(--accent2));padding:10px;border-radius:12px;font-weight:800;color:#071226;">
+          امنیت و سرعت بالا ✅
+        </div>
+        <div class="muted small" id="quickStats">پشتیبانی ۲۴/۷ • سازگار با ChatGPT • نصب آسان</div>
+      </div>
+    </section>
+
+    <div class="content">
+      <!-- Main column -->
+      <div>
+
+        <!-- Services page (home) -->
+        <div id="page-home" class="page show">
+          <div class="card" style="margin-bottom:12px">
+            <h2 id="homeTitle">خدمات ما</h2>
+            <p class="muted" id="homeDesc">برای مشاهده پلن‌ها یکی از خدمات زیر را انتخاب کنید:</p>
+          </div>
+
+          <div class="services">
+            <div class="service" data-service="config" role="button" tabindex="0">
+              <h3>خرید کانفیگ ویتوری 🛠️</h3>
+              <p class="muted">پلن‌های منعطف برای کاربران ایرانی — سرعت و پایداری عالی.</p>
+            </div>
+
+            <div class="service" data-service="express" role="button" tabindex="0">
+              <h3>اکسپرس وی‌پی‌ان (مخصوص ChatGPT) ⚡</h3>
+              <p class="muted">دسترسی نامحدود، بهینه‌سازی شده برای چت‌بات‌ها.</p>
+            </div>
+
+            <div class="service" data-service="faq" role="button" tabindex="0">
+              <h3>پرسش‌های متداول ❔</h3>
+              <p class="muted">راهنما، قوانین، و آموزش نصب.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plans: Config -->
+        <div id="page-config" class="page">
+          <div class="card">
+            <h2 id="configTitle">کانفیگ ویتوری — انتخاب پلن</h2>
+            <p class="muted">انتخاب کن؛ بعداً به صفحه پرداخت منتقل می‌شوی.</p>
+
+            <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+              <div class="plan" data-id="c20" data-name="۲۰ گیگ یک ماه" data-price="۳۰,۰۰۰ تومان">
+                <div>
+                  <div style="font-weight:700">۲۰ گیگ • ۱ ماه</div>
+                  <div class="small muted">مناسب کاربران پایه</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="price">۳۰,۰۰۰ تومان</div>
+                </div>
+              </div>
+
+              <div class="plan" data-id="c30" data-name="۳۰ گیگ یک ماه" data-price="۴۰,۰۰۰ تومان">
+                <div>
+                  <div style="font-weight:700">۳۰ گیگ • ۱ ماه</div>
+                  <div class="small muted">پیشنهاد محبوب</div>
+                </div>
+                <div style="text-align:right"><div class="price">۴۰,۰۰۰ تومان</div></div>
+              </div>
+
+              <div class="plan" data-id="c40" data-name="۴۰ گیگ یک ماه" data-price="۶۰,۰۰۰ تومان">
+                <div>
+                  <div style="font-weight:700">۴۰ گیگ • ۱ ماه</div>
+                  <div class="small muted">برای کاربران حرفه‌ای</div>
+                </div>
+                <div style="text-align:right"><div class="price">۶۰,۰۰۰ تومان</div></div>
+              </div>
+
+              <div class="plan" data-id="c50" data-name="۵۰ گیگ یک ماه" data-price="۷۰,۰۰۰ تومان">
+                <div>
+                  <div style="font-weight:700">۵۰ گیگ • ۱ ماه</div>
+                  <div class="small muted">پرسرعت و پرحجم</div>
+                </div>
+                <div style="text-align:right"><div class="price">۷۰,۰۰۰ تومان</div></div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:8px">
+              <button class="btn btn-ghost" id="backHomeFromConfig">بازگشت</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plans: Express -->
+        <div id="page-express" class="page">
+          <div class="card">
+            <h2 id="expressTitle">اکسپرس وی‌پی‌ان — پلن‌ها</h2>
+            <p class="muted">مناسب برای ChatGPT و ترافیک نامحدود</p>
+
+            <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+              <div class="plan" data-id="e1" data-name="یک ماه نامحدود" data-price="۴۰,۰۰۰ تومان">
+                <div><div style="font-weight:700">۱ ماه — نامحدود</div><div class="small muted">شروعی</div></div>
+                <div class="price">۴۰,۰۰۰ تومان</div>
+              </div>
+
+              <div class="plan" data-id="e2" data-name="دو ماه نامحدود" data-price="۸۰,۰۰۰ تومان">
+                <div><div style="font-weight:700">۲ ماه — نامحدود</div><div class="small muted">دو برابر صرفه‌جویی</div></div>
+                <div class="price">۸۰,۰۰۰ تومان</div>
+              </div>
+
+              <div class="plan" data-id="e3" data-name="سه ماه نامحدود (تخفیف)" data-price="۱۰۰,۰۰۰ تومان">
+                <div><div style="font-weight:700">۳ ماه — نامحدود</div><div class="small muted">پیشنهاد ویژه</div></div>
+                <div class="price">۱۰۰,۰۰۰ تومان</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:8px">
+              <button class="btn btn-ghost" id="backHomeFromExpress">بازگشت</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ / How it works -->
+        <div id="page-faq" class="page">
+          <div class="card">
+            <h2 id="faqTitle">چطور کار می‌کند؟ 🧭</h2>
+            <ol style="margin-top:8px">
+              <li class="muted">۱) سرویس را انتخاب کن.</li>
+              <li class="muted">۲) مبلغ را به کارت واریز کن و روی «پرداخت کردم» بزن.</li>
+              <li class="muted">۳) رسید را در تلگرام ارسال کن و اکانت برایت فعال می‌شود.</li>
+            </ol>
+
+            <div style="margin-top:12px">
+              <button class="btn btn-primary" id="contactSupportBtn">ارتباط با پشتیبانی 💬</button>
+              <button class="btn btn-ghost" id="backHomeFromFaq">بازگشت</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment page -->
+        <div id="page-payment" class="page">
+          <div class="card payment-box">
+            <h2 id="payTitle">پرداخت</h2>
+            <p id="payInstruction" class="muted">(قیمت محصول) را به شماره کارت زیر واریز نمایید و سپس پرداخت کردم را بزنید</p>
+
+            <div style="margin-top:12px">
+              <div class="card-number" id="cardBlock">
+                ====================<br>
+                <strong id="cardNumber">6037998174542638</strong><br>
+                <span id="cardHolder">پارسا عبدالملکی</span><br>
+                ====================
+              </div>
+
+              <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn btn-primary" id="paidBtn">پرداخت کردم ✅</button>
+                <button class="btn btn-ghost" id="cancelPayBtn">انصراف</button>
+              </div>
+
+              <div style="margin-top:10px;color:var(--muted);font-size:13px" id="afterPayNote">
+                بعد از کلیک روی «پرداخت کردم»، به صفحهٔ تلگرام هدایت می‌شوید تا رسید و اطلاعات پرداخت را ارسال کنید.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" style="display:flex;flex-direction:column;gap:12px">
+        <div class="card" style="text-align:center">
+          <div style="font-weight:800">پیشنهاد ویژه 🎁</div>
+          <div class="muted" style="margin-top:6px">خرید ۳ ماهه نامحدود — با تخفیف ویژه</div>
+          <div style="margin-top:12px">
+            <button class="btn btn-primary" id="buyOfferBtn">خرید سریع ⚡</button>
+          </div>
+        </div>
+
+        <a class="support" id="supportLink" href="https://t.me/INTERENET_IRANI" target="_blank" rel="noopener">
+          💬 ارتباط با پشتیبانی
+        </a>
+
+        <div class="card" style="text-align:center">
+          <div style="font-weight:700">امنیت & پشتیبانی</div>
+          <div class="muted" style="margin-top:6px">پشتیبانی ۲۴/۷، راهنمایی نصب و تضمین کیفیت</div>
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      © <span id="year"></span> VPN SHOP • طراحی مدرن — سوالی داری؟ روی «ارتباط با پشتیبانی» کلیک کن.
+    </footer>
+  </div>
+
+  <script>
+    /* ---------------------------
+       Data & Translations
+       --------------------------- */
+    const DATA = {
+      supportUrl: "https://t.me/INTERENET_IRANI",
+      cardNumber: "6037998174542638",
+      cardHolder: "پارسا عبدالملکی",
+      products: {
+        config: [
+          {id:"c20", name_fa:"۲۰ گیگ یک ماه", name_en:"20 GB — 1 month", price_toman:"۳۰,۰۰۰ تومان", price_num:30000},
+          {id:"c30", name_fa:"۳۰ گیگ یک ماه", name_en:"30 GB — 1 month", price_toman:"۴۰,۰۰۰ تومان", price_num:40000},
+          {id:"c40", name_fa:"۴۰ گیگ یک ماه", name_en:"40 GB — 1 month", price_toman:"۶۰,۰۰۰ تومان", price_num:60000},
+          {id:"c50", name_fa:"۵۰ گیگ یک ماه", name_en:"50 GB — 1 month", price_toman:"۷۰,۰۰۰ تومان", price_num:70000},
+        ],
+        express: [
+          {id:"e1", name_fa:"یک ماه نامحدود", name_en:"1 month — unlimited", price_toman:"۴۰,۰۰۰ تومان", price_num:40000},
+          {id:"e2", name_fa:"دو ماه نامحدود", name_en:"2 months — unlimited", price_toman:"۸۰,۰۰۰ تومان", price_num:80000},
+          {id:"e3", name_fa:"سه ماه نامحدود (تخفیف)", name_en:"3 months — unlimited", price_toman:"۱۰۰,۰۰۰ تومان", price_num:100000},
+        ]
+      }
+    };
+
+    const TRANSLATIONS = {
+      fa: {
+        brand: "VPN SHOP 💎",
+        tag: "امن، سریع و مدرن — خرید آنلاین",
+        heroTitle: "خرید اکانت وی پی ان — خوش آمدید! 😎",
+        heroSubtitle: "پلن مورد نظر را انتخاب کنید، پرداخت کنید و با سرعت اتصال خود را بالا ببرید.",
+        startBtn: "شروع خرید ✨",
+        howBtn: "چطور کار می‌کند؟ ❓",
+        homeTitle: "خدمات ما",
+        homeDesc: "برای مشاهده پلن‌ها یکی از خدمات زیر را انتخاب کنید:",
+        configTitle: "کانفیگ ویتوری — انتخاب پلن",
+        expressTitle: "اکسپرس وی‌پی‌ان — پلن‌ها",
+        faqTitle: "چطور کار می‌کند؟ 🧭",
+        payTitle: "پرداخت",
+        payInstruction: "(قیمت محصول) را به شماره کارت زیر واریز نمایید و سپس پرداخت کردم را بزنید",
+        paidBtn: "پرداخت کردم ✅",
+        cancelBtn: "انصراف",
+        contactSupport: "ارتباط با پشتیبانی 💬",
+        buyOffer: "خرید سریع ⚡",
+        supportShort: "ارتباط با پشتیبانی"
+      },
+      en: {
+        brand: "VPN SHOP 💎",
+        tag: "Secure • Fast • Modern",
+        heroTitle: "Welcome to VPN SHOP 😎",
+        heroSubtitle: "Pick a plan, pay, and boost your connection instantly.",
+        startBtn: "Start shopping ✨",
+        howBtn: "How it works? ❓",
+        homeTitle: "Our Services",
+        homeDesc: "Select a service to view plans:",
+        configTitle: "Vitoree Config — Plans",
+        expressTitle: "ExpressVPN — Plans",
+        faqTitle: "How it works? 🧭",
+        payTitle: "Payment",
+        payInstruction: "Transfer the product amount to the card below, then press 'I paid'.",
+        paidBtn: "I paid ✅",
+        cancelBtn: "Cancel",
+        contactSupport: "Contact Support 💬",
+        buyOffer: "Quick Buy ⚡",
+        supportShort: "Contact Support"
+      }
+    };
+
+    /* ---------------------------
+       State
+       --------------------------- */
+    let lang = 'fa'; // default
+    let currentProduct = null;
+
+    /* ---------------------------
+       Utilities & Element refs
+       --------------------------- */
+    const setText = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
+    const pages = {
+      home: document.getElementById('page-home'),
+      config: document.getElementById('page-config'),
+      express: document.getElementById('page-express'),
+      faq: document.getElementById('page-faq'),
+      payment: document.getElementById('page-payment')
+    };
+
+    // init year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------------------------
+       Rendering translations
+       --------------------------- */
+    function renderLang(){
+      document.documentElement.lang = (lang === 'fa') ? 'fa' : (lang === 'fa') ? 'fa' : 'en';
+      document.documentElement.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+      const T = TRANSLATIONS[lang];
+      setText('brandText', T.brand);
+      setText('tagText', T.tag);
+      setText('heroTitle', T.heroTitle);
+      setText('heroSubtitle', T.heroSubtitle);
+      setText('startBtn', T.startBtn);
+      setText('howBtn', T.howBtn);
+      setText('homeTitle', T.homeTitle);
+      setText('homeDesc', T.homeDesc);
+      setText('configTitle', T.configTitle);
+      setText('expressTitle', T.expressTitle);
+      setText('faqTitle', T.faqTitle);
+      setText('payTitle', T.payTitle);
+      setText('payInstruction', T.payInstruction);
+      document.getElementById('langEmoji').textContent = (lang === 'fa') ? '🇮🇷' : '🇬🇧';
+      document.getElementById('langLabel').textContent = (lang === 'fa') ? 'فارسی' : 'English';
+    }
+
+    /* ---------------------------
+       Navigation logic
+       --------------------------- */
+    function showPage(pageId){
+      Object.values(pages).forEach(p => p.classList.remove('show'));
+      if(pages[pageId]) pages[pageId].classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ---------------------------
+       Event handlers
+       --------------------------- */
+    // change language
+    document.getElementById('langToggle').addEventListener('click', () => {
+      lang = (lang === 'fa') ? 'en' : 'fa';
+      renderLang();
+    });
+
+    // go to how it works
+    document.getElementById('howBtn').addEventListener('click', () => showPage('faq'));
+    document.getElementById('startBtn').addEventListener('click', () => showPage('home'));
+    document.getElementById('backHomeFromFaq').addEventListener('click', () => showPage('home'));
+    document.getElementById('backHomeFromConfig').addEventListener('click', () => showPage('home'));
+    document.getElementById('backHomeFromExpress').addEventListener('click', () => showPage('home'));
+    document.getElementById('cancelPayBtn').addEventListener('click', () => showPage('home'));
+
+    // contact support
+    document.getElementById('contactSupportBtn').addEventListener('click', () => {
+      window.open(DATA.supportUrl, '_blank');
+    });
+    document.getElementById('supportLink').addEventListener('click', () => {
+      window.open(DATA.supportUrl, '_blank');
+    });
+    document.getElementById('buyOfferBtn').addEventListener('click', () => showPage('express'));
+
+    // click service cards
+    document.querySelectorAll('.service').forEach(card => {
+      card.addEventListener('click', () => {
+        const s = card.dataset.service;
+        if(s === 'config') showPage('config');
+        else if(s === 'express') showPage('express');
+        else if(s === 'faq') showPage('faq');
+      });
+    });
+
+    // click plan cards
+    document.querySelectorAll('.plan').forEach(plan => {
+      plan.addEventListener('click', () => {
+        currentProduct = {
+          id: plan.dataset.id,
+          name: plan.dataset.name,
+          price: plan.dataset.price
+        };
+        document.getElementById('payInstruction').textContent =
+          (lang === 'fa')
+            ? `${currentProduct.price} را به شماره کارت زیر واریز نمایید و سپس پرداخت کردم را بزنید`
+            : `Please transfer ${currentProduct.price} to the card below, then click "I paid".`;
+        showPage('payment');
+      });
+    });
+
+    // payment
+    document.getElementById('paidBtn').addEventListener('click', () => {
+      window.open(DATA.supportUrl, '_blank');
+    });
+
+    // initialize
+    renderLang();
+  </script>
+</body>
+</html>
