@@ -6,9 +6,23 @@
 <title>پلن‌ها — VPN SHOP</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
 <style>
-html,body{margin:0;font-family:Vazirmatn;background:#070816;color:#eef2ff;min-height:100vh}
-header{padding:14px;border-bottom:1px solid rgba(255,255,255,0.03)}
-nav a{color:#00d4ff;text-decoration:none;margin:0 10px;font-weight:700}
+:root{
+  --bg1:#070816;
+  --bg2:#081026;
+  --accent1:#7c4dff;
+  --accent2:#00d4ff;
+}
+html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative}
+.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px}
+.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100}
+.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700}
+@media(min-width:769px){
+  .nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}
+  .nav-links a{margin:0 10px}
+  .menu-toggle{display:none}
+}
 .container{max-width:1100px;margin:32px auto;padding:16px}
 .switch{display:flex;gap:8px;align-items:center;margin-bottom:18px}
 select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(255,255,255,0.06);color:#eef2ff}
@@ -23,8 +37,13 @@ select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(25
 </style>
 </head>
 <body>
+
 <header>
-  <nav>
+  <div style="font-weight:900;font-size:18px">VPN SHOP 💎</div>
+  <div class="menu-toggle" id="menuToggle">
+    <div></div><div></div><div></div>
+  </div>
+  <nav class="nav-links" id="navLinks">
     <a href="index.html">خانه</a>
     <a href="plans.html">خرید VPN</a>
     <a href="payment.html">ارسال رسید</a>
@@ -52,6 +71,11 @@ select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(25
 <footer>© <span id="year2"></span> VPN SHOP</footer>
 
 <script>
+// منوی همبرگری
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('show');});
+
 // داده پلن‌ها
 const PLANS = {
   vitory:[
@@ -72,10 +96,10 @@ const grid=document.getElementById('grid');
 const service=document.getElementById('service');
 const welcome=document.getElementById('welcome');
 
-// تابع فرمت قیمت
+// فرمت قیمت
 function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") + " تومان"; }
 
-// تابع شمارش قیمت
+// شمارش قیمت
 function countPrice(elem, target){
   let current = 0;
   const step = Math.ceil(target / 50);
@@ -109,5 +133,6 @@ function render(){
 service.addEventListener('change',render);
 document.getElementById('year2').textContent=new Date().getFullYear();
 </script>
+
 </body>
 </html>
