@@ -6,43 +6,31 @@
 <title>پلن‌ها — VPN SHOP</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg1:#070816;
-  --bg2:#081026;
-  --accent1:#7c4dff;
-  --accent2:#00d4ff;
-}
-html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh}
-header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative}
-.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer}
-.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px}
-.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100}
-.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700}
-@media(min-width:769px){
-  .nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}
-  .nav-links a{margin:0 10px}
-  .menu-toggle{display:none}
-}
+:root{--bg1:#070816;--bg2:#081026;--accent1:#7c4dff;--accent2:#00d4ff;}
+html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh;}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative;}
+.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer;z-index:101;}
+.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px;}
+.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100;}
+.nav-links.show{display:flex !important;}
+.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700;}
+@media(min-width:769px){.nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}.nav-links a{margin:0 10px}.menu-toggle{display:none}}
 .container{max-width:1100px;margin:32px auto;padding:16px}
 .switch{display:flex;gap:8px;align-items:center;margin-bottom:18px}
 select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(255,255,255,0.06);color:#eef2ff}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;position:relative}
+.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;position:relative;transition:transform .2s}
+.card:hover{transform:translateY(-6px);}
 .price{color:#00ff9b;font-weight:800;margin-top:10px}
 .btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:8px;background:#7c4dff;color:#07101a;text-decoration:none;font-weight:800}
-.discount{position:absolute;top:8px;left:8px;background:#ff5c5c;color:#fff;padding:2px 6px;border-radius:6px;font-size:12px;font-weight:700}
-.status{margin-top:6px;font-size:13px;font-weight:600}
-.welcome-msg{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;text-align:center;margin-bottom:16px;color:rgba(255,255,255,0.75)}
-@media(max-width:600px){.card{padding:12px}}
+.welcome-msg{margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.03);border-radius:10px;color:rgba(255,255,255,0.8)}
 </style>
 </head>
 <body>
 
 <header>
   <div style="font-weight:900;font-size:18px">VPN SHOP 💎</div>
-  <div class="menu-toggle" id="menuToggle">
-    <div></div><div></div><div></div>
-  </div>
+  <div class="menu-toggle" id="menuToggle"><div></div><div></div><div></div></div>
   <nav class="nav-links" id="navLinks">
     <a href="index.html">خانه</a>
     <a href="plans.html">خرید VPN</a>
@@ -54,12 +42,12 @@ select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(25
 
 <div class="container">
   <h2>پلن‌ها</h2>
-  <p class="welcome-msg" id="welcome">لطفاً سرویس مورد نظر خود را از منوی زیر انتخاب کنید تا پلن‌ها نمایش داده شوند.</p>
+  <p class="welcome-msg">لطفاً سرویس مورد نظر خود را انتخاب کنید تا پلن‌ها نمایش داده شوند.</p>
 
   <div class="switch">
     <label style="font-weight:800">سرویس:</label>
     <select id="service">
-      <option value="" selected disabled>انتخاب سرویس</option>
+      <option value="" selected disabled>لطفاً سرویس را انتخاب کنید</option>
       <option value="vitory">کانفیگ ویتوری</option>
       <option value="express">اکسپرس وی‌پی‌ان (ChatGPT)</option>
     </select>
@@ -71,67 +59,50 @@ select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(25
 <footer>© <span id="year2"></span> VPN SHOP</footer>
 
 <script>
-// منوی همبرگری
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('show');});
+document.addEventListener("DOMContentLoaded", function() {
+  // منوی همبرگری
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click',()=>navLinks.classList.toggle('show'));
 
-// داده پلن‌ها
-const PLANS = {
-  vitory:[
-    {title:"۲۰ گیگ • ۱ ماه", price:30000, icon:"📦", server:true},
-    {title:"۳۰ گیگ • ۱ ماه", price:40000, icon:"📦", server:true},
-    {title:"۴۰ گیگ • ۱ ماه", price:60000, icon:"📦", server:false},
-    {title:"۵۰ گیگ • ۱ ماه", price:70000, icon:"📦", server:true},
-    {title:"حجم نامحدود • ۲ ماه", price:200000, icon:"🚀", discount:true, server:true}
-  ],
-  express:[
-    {title:"۱ ماه نامحدود", price:40000, icon:"⚡", server:true},
-    {title:"۲ ماه نامحدود", price:80000, icon:"⚡", discount:true, server:true},
-    {title:"۳ ماه نامحدود (تخفیف)", price:100000, icon:"⚡", discount:true, server:false}
-  ]
-};
+  // سال فوتر
+  document.getElementById('year2').textContent = new Date().getFullYear();
 
-const grid=document.getElementById('grid');
-const service=document.getElementById('service');
-const welcome=document.getElementById('welcome');
+  // پلن‌ها
+  const PLANS = {
+    vitory:[
+      {title:"۲۰ گیگ • ۱ ماه", price:30000},
+      {title:"۳۰ گیگ • ۱ ماه", price:40000},
+      {title:"۴۰ گیگ • ۱ ماه", price:60000},
+      {title:"۵۰ گیگ • ۱ ماه", price:70000},
+      {title:"حجم نامحدود • ۲ ماه", price:200000}
+    ],
+    express:[
+      {title:"۱ ماه نامحدود", price:40000},
+      {title:"۲ ماه نامحدود", price:80000},
+      {title:"۳ ماه نامحدود (تخفیف)", price:100000}
+    ]
+  };
 
-// فرمت قیمت
-function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") + " تومان"; }
+  const grid=document.getElementById('grid');
+  const service=document.getElementById('service');
 
-// شمارش قیمت
-function countPrice(elem, target){
-  let current = 0;
-  const step = Math.ceil(target / 50);
-  const interval = setInterval(()=>{
-    current += step;
-    if(current>=target){ current=target; clearInterval(interval); }
-    elem.textContent = fmt(current);
-  },10);
-}
+  function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") + " تومان"; }
 
-// رندر پلن‌ها
-function render(){
-  grid.innerHTML='';
-  if(!service.value){ welcome.style.display='block'; return; }
-  welcome.style.display='none';
-  const list=PLANS[service.value];
-  list.forEach(p=>{
-    const div=document.createElement('div'); div.className='card';
-    div.innerHTML=`${p.discount?'<div class="discount">تخفیف</div>':''}
-      <h3>${p.icon} ${p.title}</h3>
-      <div class="price">0 تومان</div>
-      <div class="status">سرور: ${p.server?'فعال':'غیرفعال'}</div>
+  function render(){
+    grid.innerHTML='';
+    if(!service.value) return;
+    const list=PLANS[service.value];
+    list.forEach(p=>{
+      const div=document.createElement('div'); div.className='card';
+      div.innerHTML=`<h3>${p.title}</h3><div class="price">${fmt(p.price)}</div>
       <a class="btn" href="payment.html?amount=${p.price}&plan=${encodeURIComponent(p.title)}">پرداخت</a>`;
-    grid.appendChild(div);
-    // شمارش قیمت
-    const priceElem = div.querySelector('.price');
-    countPrice(priceElem, p.price);
-  });
-}
+      grid.appendChild(div);
+    });
+  }
 
-service.addEventListener('change',render);
-document.getElementById('year2').textContent=new Date().getFullYear();
+  service.addEventListener('change',render);
+});
 </script>
 
 </body>
