@@ -6,44 +6,20 @@
 <title>پلن‌ها — VPN SHOP</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg1:#070816;
-  --bg2:#081026;
-  --accent1:#7c4dff;
-  --accent2:#00d4ff;
-  --discount:#ff5c5c;
-}
-html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh}
+html,body{margin:0;font-family:Vazirmatn;background:#070816;color:#eef2ff;min-height:100vh}
 header{padding:14px;border-bottom:1px solid rgba(255,255,255,0.03)}
-nav a{color:var(--accent2);text-decoration:none;margin:0 10px;font-weight:700}
+nav a{color:#00d4ff;text-decoration:none;margin:0 10px;font-weight:700}
 .container{max-width:1100px;margin:32px auto;padding:16px}
 .switch{display:flex;gap:8px;align-items:center;margin-bottom:18px}
-select{padding:8px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit}
+select{padding:8px;border-radius:6px;background:#0b1020;border:1px solid rgba(255,255,255,0.06);color:#eef2ff}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{
-  background:rgba(255,255,255,0.03);
-  padding:18px;
-  border-radius:12px;
-  transition:transform .3s, box-shadow .3s;
-  position:relative;
-}
-.card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,0.5);}
+.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:10px;position:relative}
 .price{color:#00ff9b;font-weight:800;margin-top:10px}
-.btn{
-  display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  color:#07101a;text-decoration:none;font-weight:800;
-}
-.discount{
-  position:absolute;top:12px;left:12px;background:var(--discount);color:#fff;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700;
-}
-.welcome-msg{
-  background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;text-align:center;margin-bottom:16px;font-weight:600;color:rgba(255,255,255,0.75);
-}
-@media(max-width:600px){
-  h2{font-size:22px}
-  .card{padding:14px}
-}
+.btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:8px;background:#7c4dff;color:#07101a;text-decoration:none;font-weight:800}
+.discount{position:absolute;top:8px;left:8px;background:#ff5c5c;color:#fff;padding:2px 6px;border-radius:6px;font-size:12px;font-weight:700}
+.status{margin-top:6px;font-size:13px;font-weight:600}
+.welcome-msg{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;text-align:center;margin-bottom:16px;color:rgba(255,255,255,0.75)}
+@media(max-width:600px){.card{padding:12px}}
 </style>
 </head>
 <body>
@@ -76,18 +52,19 @@ select{padding:8px;border-radius:10px;background:transparent;border:1px solid rg
 <footer>© <span id="year2"></span> VPN SHOP</footer>
 
 <script>
+// داده پلن‌ها
 const PLANS = {
   vitory:[
-    {title:"۲۰ گیگ • ۱ ماه", price:30000, icon:"📦"},
-    {title:"۳۰ گیگ • ۱ ماه", price:40000, icon:"📦"},
-    {title:"۴۰ گیگ • ۱ ماه", price:60000, icon:"📦"},
-    {title:"۵۰ گیگ • ۱ ماه", price:70000, icon:"📦"},
-    {title:"حجم نامحدود • ۲ ماه", price:200000, icon:"🚀", discount:true}
+    {title:"۲۰ گیگ • ۱ ماه", price:30000, icon:"📦", server:true},
+    {title:"۳۰ گیگ • ۱ ماه", price:40000, icon:"📦", server:true},
+    {title:"۴۰ گیگ • ۱ ماه", price:60000, icon:"📦", server:false},
+    {title:"۵۰ گیگ • ۱ ماه", price:70000, icon:"📦", server:true},
+    {title:"حجم نامحدود • ۲ ماه", price:200000, icon:"🚀", discount:true, server:true}
   ],
   express:[
-    {title:"۱ ماه نامحدود", price:40000, icon:"⚡"},
-    {title:"۲ ماه نامحدود", price:80000, icon:"⚡", discount:true},
-    {title:"۳ ماه نامحدود (تخفیف)", price:100000, icon:"⚡", discount:true}
+    {title:"۱ ماه نامحدود", price:40000, icon:"⚡", server:true},
+    {title:"۲ ماه نامحدود", price:80000, icon:"⚡", discount:true, server:true},
+    {title:"۳ ماه نامحدود (تخفیف)", price:100000, icon:"⚡", discount:true, server:false}
   ]
 };
 
@@ -95,23 +72,37 @@ const grid=document.getElementById('grid');
 const service=document.getElementById('service');
 const welcome=document.getElementById('welcome');
 
+// تابع فرمت قیمت
 function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") + " تومان"; }
 
+// تابع شمارش قیمت
+function countPrice(elem, target){
+  let current = 0;
+  const step = Math.ceil(target / 50);
+  const interval = setInterval(()=>{
+    current += step;
+    if(current>=target){ current=target; clearInterval(interval); }
+    elem.textContent = fmt(current);
+  },10);
+}
+
+// رندر پلن‌ها
 function render(){
   grid.innerHTML='';
-  if(!service.value){
-    welcome.style.display='block';
-    return;
-  }
+  if(!service.value){ welcome.style.display='block'; return; }
   welcome.style.display='none';
   const list=PLANS[service.value];
   list.forEach(p=>{
     const div=document.createElement('div'); div.className='card';
     div.innerHTML=`${p.discount?'<div class="discount">تخفیف</div>':''}
       <h3>${p.icon} ${p.title}</h3>
-      <div class="price">${fmt(p.price)}</div>
+      <div class="price">0 تومان</div>
+      <div class="status">سرور: ${p.server?'فعال':'غیرفعال'}</div>
       <a class="btn" href="payment.html?amount=${p.price}&plan=${encodeURIComponent(p.title)}">پرداخت</a>`;
     grid.appendChild(div);
+    // شمارش قیمت
+    const priceElem = div.querySelector('.price');
+    countPrice(priceElem, p.price);
   });
 }
 
