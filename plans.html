@@ -39,6 +39,7 @@
     <div class="switch">
       <label style="font-weight:800">سرویس:</label>
       <select id="service">
+        <option value="" selected disabled>لطفاً سرویس را انتخاب کنید</option>
         <option value="vitory">کانفیگ ویتوری</option>
         <option value="express">اکسپرس وی‌پی‌ان (ChatGPT)</option>
       </select>
@@ -55,7 +56,8 @@
         {title:"۲۰ گیگ • ۱ ماه", price:30000},
         {title:"۳۰ گیگ • ۱ ماه", price:40000},
         {title:"۴۰ گیگ • ۱ ماه", price:60000},
-        {title:"۵۰ گیگ • ۱ ماه", price:70000}
+        {title:"۵۰ گیگ • ۱ ماه", price:70000},
+        {title:"حجم نامحدود • ۲ ماه", price:200000} // محصول جدید اضافه شد
       ],
       express:[
         {title:"۱ ماه نامحدود", price:40000},
@@ -63,6 +65,7 @@
         {title:"۳ ماه نامحدود (تخفیف)", price:100000}
       ]
     };
+
     const grid=document.getElementById('grid');
     const service=document.getElementById('service');
 
@@ -70,6 +73,7 @@
 
     function render(){
       grid.innerHTML='';
+      if(!service.value) return; // اگر چیزی انتخاب نشده باشد، چیزی نمایش نده
       const list=PLANS[service.value];
       list.forEach(p=>{
         const div=document.createElement('div'); div.className='card';
@@ -78,8 +82,8 @@
         grid.appendChild(div);
       });
     }
+
     service.addEventListener('change',render);
-    render();
     document.getElementById('year2').textContent=new Date().getFullYear();
   </script>
 </body>
