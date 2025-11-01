@@ -6,29 +6,21 @@
 <title>VPN SHOP 💎 — صفحه اصلی</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg1:#070816;
-  --bg2:#0b1020;
-  --accent1:#7c4dff;
-  --accent2:#00d4ff;
-}
-html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh}
-header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative}
-.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer}
-.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px}
-.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100}
-.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700}
-.hero{max-width:980px;margin:48px auto;padding:28px;border-radius:16px;text-align:center;background:rgba(255,255,255,0.02)}
-h1{margin:0 0 10px;font-size:28px}
-p.lead{color:rgba(255,255,255,0.75)}
-.btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#07101a;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:900}
-footer{text-align:center;padding:30px;color:rgba(255,255,255,0.6)}
-.welcome-msg{margin-top:16px;padding:14px;background:rgba(255,255,255,0.03);border-radius:12px;font-weight:600;color:rgba(255,255,255,0.75)}
-@media(min-width:769px){
-  .nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}
-  .nav-links a{margin:0 10px}
-  .menu-toggle{display:none}
-}
+:root{--bg1:#070816;--bg2:#0b1020;--accent1:#7c4dff;--accent2:#00d4ff;}
+html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh;}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative;}
+.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer;z-index:101;}
+.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px;}
+.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100;}
+.nav-links.show{display:flex !important;}
+.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700;}
+@media(min-width:769px){.nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}.nav-links a{margin:0 10px}.menu-toggle{display:none;}}
+.hero{max-width:980px;margin:48px auto;padding:28px;border-radius:16px;text-align:center;background:rgba(255,255,255,0.02);}
+h1{margin:0 0 10px;font-size:28px;}
+p.lead{color:rgba(255,255,255,0.75);}
+.btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#07101a;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:900;}
+footer{text-align:center;padding:30px;color:rgba(255,255,255,0.6);}
+.welcome-msg{margin-top:16px;padding:14px;background:rgba(255,255,255,0.03);border-radius:12px;font-weight:600;color:rgba(255,255,255,0.75);}
 </style>
 </head>
 <body>
@@ -60,21 +52,23 @@ footer{text-align:center;padding:30px;color:rgba(255,255,255,0.6)}
 
 <script>
 // منوی همبرگری
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('show');});
+document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', function() { navLinks.classList.toggle('show'); });
 
-// پیام خوش‌آمدگویی
-const welcomeMsg = document.getElementById('welcomeMsg');
-const hours = new Date().getHours();
-let greeting = "سلام! خوش آمدید به VPN SHOP.";
-if(hours>=5 && hours<12) greeting="صبح بخیر! خوش آمدید به VPN SHOP.";
-else if(hours>=12 && hours<18) greeting="عصر بخیر! خوش آمدید به VPN SHOP.";
-else if(hours>=18 && hours<=23) greeting="شب بخیر! خوش آمدید به VPN SHOP.";
-welcomeMsg.textContent = greeting;
+  // پیام خوش آمدگویی
+  const welcomeMsg = document.getElementById('welcomeMsg');
+  const hours = new Date().getHours();
+  let greeting = "سلام! خوش آمدید به VPN SHOP.";
+  if(hours>=5 && hours<12) greeting="صبح بخیر! خوش آمدید به VPN SHOP.";
+  else if(hours>=12 && hours<18) greeting="عصر بخیر! خوش آمدید به VPN SHOP.";
+  else if(hours>=18 && hours<=23) greeting="شب بخیر! خوش آمدید به VPN SHOP.";
+  welcomeMsg.textContent = greeting;
 
-// سال در فوتر
-document.getElementById('year').textContent=new Date().getFullYear();
+  // سال در فوتر
+  document.getElementById('year').textContent=new Date().getFullYear();
+});
 </script>
 
 </body>
