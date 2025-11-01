@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>پشتیبانی — VPN SHOP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,#070816,#041026);color:#eef2ff}
+    header{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    nav a{color:#00d4ff;text-decoration:none;margin:0 10px}
+    .wrap{max-width:720px;margin:40px auto;padding:16px}
+    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:none;background:rgba(255,255,255,0.06);color:inherit;margin-top:8px}
+    button{margin-top:12px;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,#7c4dff,#00d4ff);color:#07101a;font-weight:900;cursor:pointer}
+    .note{color:rgba(255,255,255,0.7);font-size:13px;margin-top:10px}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">خانه</a>
+      <a href="plans.html">خرید VPN</a>
+      <a href="payment.html">ارسال رسید</a>
+      <a href="support.html">پشتیبانی</a>
+      <a href="about.html">درباره ما</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <h2>ارسال تیکت پشتیبانی</h2>
+      <p class="note">سوال یا مشکل خود را بنویسید — پاسخ به ایمیل یا شماره‌ای که می‌دهید ارسال می‌شود.</p>
+
+      <form id="ticketForm" action="https://formspree.io/f/xvgvvbqp" method="POST">
+        <input name="name" type="text" placeholder="نام شما (اختیاری)">
+        <input name="contact" type="text" placeholder="ایمیل یا شماره (برای پاسخ)" required>
+        <input name="subject" type="text" placeholder="موضوع" required>
+        <textarea name="message" rows="5" placeholder="توضیحات..."></textarea>
+        <button type="submit">📨 ارسال تیکت</button>
+      </form>
+      <div id="ticketStatus" class="note"></div>
+    </div>
+  </main>
+
+  <script>
+    const tform = document.getElementById('ticketForm');
+    const st = document.getElementById('ticketStatus');
+    tform.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      st.textContent='⏳ در حال ارسال...';
+      const fd = new FormData(tform);
+      try{
+        const res = await fetch(tform.action, {method:'POST', body:fd, headers:{Accept:'application/json'}});
+        if(res.ok){ st.textContent='✅ تیکت شما ارسال شد. به زودی پاسخ می‌دهیم.'; tform.reset(); }
+        else st.textContent='⚠️ خطا در ارسال. دوباره امتحان کن.';
+      }catch(err){ st.textContent='⚠️ خطا در ارتباط.'; }
+    });
+  </script>
+</body>
+</html>

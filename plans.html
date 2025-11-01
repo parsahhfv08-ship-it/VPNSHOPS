@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>پلن‌ها — VPN SHOP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg1:#070816;--bg2:#081026;--accent1:#7c4dff;--accent2:#00d4ff}
+    html,body{height:100%;margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff}
+    header{padding:14px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    nav a{color:var(--accent2);text-decoration:none;margin:0 10px;font-weight:700}
+    .container{max-width:1100px;margin:32px auto;padding:16px}
+    .switch{display:flex;gap:8px;align-items:center;margin-bottom:18px}
+    select{padding:8px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;transition:transform .18s}
+    .card:hover{transform:translateY(-6px)}
+    .price{color:#00ff9b;font-weight:800;margin-top:10px}
+    .btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#07101a;text-decoration:none;font-weight:800}
+    footer{text-align:center;padding:30px;color:rgba(255,255,255,0.6)}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">خانه</a>
+      <a href="plans.html">خرید VPN</a>
+      <a href="payment.html">ارسال رسید</a>
+      <a href="support.html">پشتیبانی</a>
+      <a href="about.html">درباره ما</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>پلن‌ها</h2>
+    <p style="color:rgba(255,255,255,0.75)">سرویس مورد نظر را انتخاب کن و پرداخت را انجام بده.</p>
+
+    <div class="switch">
+      <label style="font-weight:800">سرویس:</label>
+      <select id="service">
+        <option value="vitory">کانفیگ ویتوری</option>
+        <option value="express">اکسپرس وی‌پی‌ان (ChatGPT)</option>
+      </select>
+    </div>
+
+    <div id="grid" class="grid"></div>
+  </div>
+
+  <footer>© <span id="year2"></span> VPN SHOP</footer>
+
+  <script>
+    const PLANS = {
+      vitory:[
+        {title:"۲۰ گیگ • ۱ ماه", price:30000},
+        {title:"۳۰ گیگ • ۱ ماه", price:40000},
+        {title:"۴۰ گیگ • ۱ ماه", price:60000},
+        {title:"۵۰ گیگ • ۱ ماه", price:70000}
+      ],
+      express:[
+        {title:"۱ ماه نامحدود", price:40000},
+        {title:"۲ ماه نامحدود", price:80000},
+        {title:"۳ ماه نامحدود (تخفیف)", price:100000}
+      ]
+    };
+    const grid=document.getElementById('grid');
+    const service=document.getElementById('service');
+
+    function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") + " تومان"; }
+
+    function render(){
+      grid.innerHTML='';
+      const list=PLANS[service.value];
+      list.forEach(p=>{
+        const div=document.createElement('div'); div.className='card';
+        div.innerHTML=`<h3>${p.title}</h3><div class="price">${fmt(p.price)}</div>
+          <a class="btn" href="payment.html?amount=${p.price}&plan=${encodeURIComponent(p.title)}">پرداخت</a>`;
+        grid.appendChild(div);
+      });
+    }
+    service.addEventListener('change',render);
+    render();
+    document.getElementById('year2').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
