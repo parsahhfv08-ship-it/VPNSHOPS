@@ -6,23 +6,15 @@
 <title>درباره ما — VPN SHOP</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg1:#070816;
-  --bg2:#041026;
-  --accent1:#7c4dff;
-  --accent2:#00d4ff;
-}
-html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh}
-header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative}
-.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer}
-.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px}
-.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100}
-.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700}
-@media(min-width:769px){
-  .nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}
-  .nav-links a{margin:0 10px}
-  .menu-toggle{display:none}
-}
+:root{--bg1:#070816;--bg2:#041026;--accent1:#7c4dff;--accent2:#00d4ff;}
+html,body{margin:0;font-family:Vazirmatn;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eef2ff;min-height:100vh;}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px;position:relative;}
+.menu-toggle{display:flex;flex-direction:column;gap:4px;cursor:pointer;z-index:101;}
+.menu-toggle div{width:28px;height:3px;background:var(--accent2);border-radius:2px;}
+.nav-links{display:none;flex-direction:column;position:absolute;top:64px;right:16px;background:rgba(7,8,22,0.95);padding:16px;border-radius:12px;width:200px;z-index:100;}
+.nav-links.show{display:flex !important;}
+.nav-links a{color:var(--accent2);text-decoration:none;margin:6px 0;font-weight:700;}
+@media(min-width:769px){.nav-links{display:flex;position:static;flex-direction:row;background:transparent;padding:0;width:auto}.nav-links a{margin:0 10px}.menu-toggle{display:none;}}
 .wrap{max-width:900px;margin:40px auto;padding:18px}
 h2{margin-top:0}
 p{color:rgba(255,255,255,0.85);line-height:1.8}
@@ -60,13 +52,12 @@ p{color:rgba(255,255,255,0.85);line-height:1.8}
 <footer>© <span id="year"></span> VPN SHOP</footer>
 
 <script>
-// منوی همبرگری
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('show');});
-
-// سال در فوتر
-document.getElementById('year').textContent=new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click',()=>navLinks.classList.toggle('show'));
+  document.getElementById('year').textContent=new Date().getFullYear();
+});
 </script>
 
 </body>
