@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>پرداخت — Mahan Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#040416;--card:rgba(255,255,255,0.03);--accent1:#00d4ff;--accent2:#7c4dff}
+  *{box-sizing:border-box;font-family:Vazirmatn}
+  body{margin:0;background:linear-gradient(180deg,#020216,#07102a);color:#eef2ff;padding:20px;display:flex;justify-content:center}
+  .box{max-width:720px;width:100%;background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  h1{margin-top:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .wallet{direction:ltr;font-weight:800}
+  .copy{padding:8px 12px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#07101a;cursor:pointer}
+  .rates{margin-top:10px;color:rgba(255,255,255,0.8)}
+  form{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  input,select,textarea{padding:10px;border-radius:8px;border:none;background:rgba(255,255,255,0.04);color:inherit}
+  button.send{padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#07101a;font-weight:800;cursor:pointer}
+  .note{font-size:13px;color:rgba(255,255,255,0.7)}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Mahan Shop — پرداخت و ارسال فیش</h1>
+
+  <div class="row">
+    <div>
+      <div class="note">آدرس کیف پول (TRON)</div>
+      <div class="wallet" id="wallet">UQDX39uC54HfFIIynuSX2XPpr-dwnF5KznTOwHkrKoUbYhFI</div>
+    </div>
+    <div style="text-align:left">
+      <div class="note">تبدیل زنده</div>
+      <div id="liveRates" class="rates">در حال دریافت نرخ‌ها…</div>
+    </div>
+    <div><button class="copy" id="copyWallet">کپی آدرس</button></div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:12px 0">
+
+  <div class="note">محصول انتخابی:</div>
+  <div id="selected" style="font-weight:800;margin-bottom:8px">— هیچ محصولی انتخاب نشده —</div>
+
+  <form id="payForm" action="https://formspree.io/f/xvgvvbqp" method="POST">
+    <input type="hidden" name="shop" value="Mahan Shop">
+    <label>نام خریدار</label>
+    <input name="name" type="text" placeholder="نام شما" required>
+
+    <label>شماره تماس</label>
+    <input name="phone" type="tel" placeholder="0912xxxxxxx" required>
+
+    <label>مبلغ (تومان)</label>
+    <input name="amount" id="amountInput" type="number" placeholder="مثلاً 100000" required>
+
+    <label>انتخاب واحد پرداخت (برای تبدیل)</label>
+    <select id="payUnit" name="pay_unit">
+      <option value="usd">دلار (USD)</option>
+      <option value="usdt">تتر (USDT)</option>
+      <option value="trx">ترون (TRX)</option>
+    </select>
+
+    <div class="note">معادل تقریبی پرداخت در واحد انتخاب‌شده:</div>
+    <div id="converted" style="font-weight:900">—</div>
+
+    <label>شناسه تراکنش (TXID) یا توضیح (اختیاری)</label>
+    <input name="txid" type="text" placeholder="TXID یا توضیح پرداخت">
+
+    <button class="send" type="submit">ارسال اطلاعات پرداخت و ثبت سفارش</button>
+    <div id="status" class="note"></div>
+  </form>
+
+  <p class="note" style="margin-top:10px">نکته: پس از ارسال، سفارش شما بررسی می‌شود؛ لطفاً تراکنش/زمان/شماره پرداخت را دقیق وارد کنید تا سفارش سریع‌تر تایید شود.</p>
+</div>
+
+<script>
+  // read query params (plan & amount) from plansmahan.html
+  const qs = new URLSearchParams(location.search);
+  const plan = qs.get('plan');
+  const amountFrom = qs.get('amount');
+  if(plan) document.getElementById('selected').textContent = plan;
+  if(amountFrom) document.getElementById('amountInput').value = amountFrom;
+
+  // wallet
+  const walletEl = document.getElementById('wallet');
+  document.getElementById('copyWallet').addEventListener('click', async ()=> {
+    await navigator.clipboard.writeText(walletEl.textContent.trim());
+    alert('آدرس کیف پول کپی شد ✅');
+  });
+
+  // rates (CoinGecko + exchangerate)
+  let rates = {trx_usd:0.28, usdt_usd:1, usd_per_irr:0.0000237}; // fallback
+  async function fetchRates(){
+    try{
+      const cg = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=tron,tether&vs_currencies=usd').then(r=>r.json());
+      rates.trx_usd = cg.tron.usd || rates.trx_usd;
+      rates.usdt_usd = cg.tether.usd || rates.usdt_usd;
+      const ex = await fetch('https://api.exchangerate.host/latest?base=IRR&symbols=USD').then(r=>r.json());
+      if(ex && ex.rates && ex.rates.USD) rates.usd_per_irr = ex.rates.USD;
+      document.getElementById('liveRates').textContent = `1 TRX ≈ $${rates.trx_usd.toFixed(4)} — 1 USDT ≈ $${(rates.usdt_usd||1).toFixed(4)}`;
+    }catch(e){
+      document.getElementById('liveRates').textContent = 'خطا در دریافت نرخ‌ها — اتصال را بررسی کن';
+    }
+  }
+  fetchRates();
+
+  // convert function: toman -> USD -> target
+  // assume 1 تومان = 10 ریال (تومان = 10 ریال historically). We'll convert: USD = (toman * 10) * usd_per_irr
+  function convert(amountToman, unit){
+    const rial = Number(amountToman) * 10;
+    const usd = rial * (rates.usd_per_irr || 0.0000237);
+    if(unit === 'usd') return usd;
+    if(unit === 'usdt') return usd / (rates.usdt_usd || 1);
+    if(unit === 'trx') return usd / (rates.trx_usd || 0.28);
+    return usd;
+  }
+
+  // update converted display when amount or unit change
+  const amountInput = document.getElementById('amountInput');
+  const payUnit = document.getElementById('payUnit');
+  const converted = document.getElementById('converted');
+  function updateConverted(){
+    const amt = Number(amountInput.value || 0);
+    const unit = payUnit.value;
+    if(!amt) { converted.textContent = '—'; return; }
+    const val = convert(amt, unit);
+    const pretty = unit === 'trx' ? val.toLocaleString('en-US',{maximumFractionDigits:6}) + ' TRX' :
+                 (unit === 'usdt' ? val.toFixed(4) + ' USDT' : '$' + val.toFixed(4));
+    converted.textContent = pretty + ' (تقریبی)';
+  }
+  amountInput.addEventListener('input', updateConverted);
+  payUnit.addEventListener('change', updateConverted);
+  // initial call
+  setTimeout(updateConverted, 1200);
+
+  // form submit -> Formspree
+  const form = document.getElementById('payForm');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    status.textContent = '⏳ در حال ارسال...';
+    const fd = new FormData(form);
+    fd.append('converted_equivalent', converted.textContent);
+    try{
+      const res = await fetch(form.action, {method:'POST', body:fd, headers:{Accept:'application/json'}});
+      if(res.ok){ status.textContent = '✅ اطلاعات ارسال شد. پس از بررسی پاسخ داده خواهد شد.'; form.reset(); document.getElementById('selected').textContent='—'; }
+      else { status.textContent = '⚠️ خطا در ارسال. دوباره تلاش کنید.'; }
+    }catch(err){
+      status.textContent = '⚠️ خطا در ارتباط.';
+    }
+  });
+</script>
+</body>
+</html>
