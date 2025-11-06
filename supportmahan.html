@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>پشتیبانی | ماهان شاپ</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:linear-gradient(180deg,#050617,#0b0e1a);color:#eef2ff;
+font-family:'Vazirmatn',sans-serif;padding:30px;display:flex;justify-content:center}
+form{background:rgba(255,255,255,0.03);padding:20px;border-radius:12px;max-width:480px;width:100%;
+border:1px solid rgba(255,255,255,0.05)}
+h1{background:linear-gradient(90deg,#7c4dff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center}
+input,textarea{width:100%;padding:10px;border-radius:8px;border:none;margin-bottom:10px;
+background:rgba(255,255,255,0.05);color:#fff}
+button{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#7c4dff,#00d4ff);
+color:#07101a;font-weight:800;cursor:pointer}
+.note{text-align:center;font-size:13px;color:rgba(255,255,255,0.6)}
+</style>
+</head>
+<body>
+<form action="https://formspree.io/f/xvgvvbqp" method="POST">
+  <h1>ارتباط با پشتیبانی</h1>
+  <input type="hidden" name="shop" value="Mahan Shop">
+  <label>نام شما:</label>
+  <input name="name" required placeholder="نام و نام خانوادگی">
+  <label>شماره تماس یا آی‌دی تلگرام:</label>
+  <input name="contact" required placeholder="@yourtelegram یا شماره تلفن">
+  <label>موضوع پیام:</label>
+  <input name="subject" required placeholder="مثلاً پیگیری سفارش یا سؤال">
+  <label>متن پیام:</label>
+  <textarea name="message" rows="5" required placeholder="متن درخواست خود را بنویسید..."></textarea>
+  <button type="submit">ارسال پیام به پشتیبانی</button>
+  <p class="note">پاسخ از طریق تلگرام یا شماره تماس شما ارسال می‌شود.</p>
+</form>
+</body>
+</html>
